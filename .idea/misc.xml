@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
+  <component name="CidrRootsConfiguration">
+    <sourceRoots>
+      <file path="$PROJECT_DIR$/src/devices" />
+      <file path="$PROJECT_DIR$/src/examples" />
+      <file path="$PROJECT_DIR$/src/filesys" />
+      <file path="$PROJECT_DIR$/src/lib" />
+      <file path="$PROJECT_DIR$/src/misc" />
+      <file path="$PROJECT_DIR$/src/tests" />
+      <file path="$PROJECT_DIR$/src/threads" />
+      <file path="$PROJECT_DIR$/src/userprog" />
+      <file path="$PROJECT_DIR$/src/utils" />
+      <file path="$PROJECT_DIR$/src/vm" />
+    </sourceRoots>
+  </component>
+</project>

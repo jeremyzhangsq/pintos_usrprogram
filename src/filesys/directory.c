@@ -5,6 +5,8 @@
 #include "filesys/filesys.h"
 #include "filesys/inode.h"
 #include "threads/malloc.h"
+#include "inode.h"
+#include "filesys.h"
 
 /* A directory. */
 struct dir 

@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="src"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="G:/pintos_user/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src">
+				<Option output="G:/pintos_user/src/cmake-build-debug/src.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="G:/pintos_user/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="G:/pintos_user/src/lib"/>
+					<Add directory="G:/pintos_user/src/lib/kernel"/>
+					<Add directory="G:/pintos_user/src/lib/user"/>
+					<Add directory="G:/pintos_user/src/userprog"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 src"/>
+					<CompileFile command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src/fast">
+				<Option output="G:/pintos_user/src/cmake-build-debug/src.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="G:/pintos_user/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="G:/pintos_user/src/lib"/>
+					<Add directory="G:/pintos_user/src/lib/kernel"/>
+					<Add directory="G:/pintos_user/src/lib/user"/>
+					<Add directory="G:/pintos_user/src/userprog"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 src/fast"/>
+					<CompileFile command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="G:/pintos_user/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="G:/pintos_user/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/mingw32-make.exe -f &quot;G:/pintos_user/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="G:/pintos_user/src/devices/block.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/block.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/ide.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/ide.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/input.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/input.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/intq.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/intq.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/kbd.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/kbd.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/partition.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/partition.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/pit.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/pit.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/rtc.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/rtc.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/serial.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/serial.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/shutdown.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/shutdown.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/speaker.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/speaker.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/timer.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/timer.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/vga.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/devices/vga.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/bubsort.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/cat.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/cmp.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/cp.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/echo.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/halt.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/hex-dump.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/insult.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/lineup.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/ls.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/matmult.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/mcat.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/mcp.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/mkdir.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/pwd.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/recursor.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/rm.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/examples/shell.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/directory.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/directory.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/file.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/file.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/filesys.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/filesys.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/free-map.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/free-map.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/fsutil.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/fsutil.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/inode.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/inode.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/filesys/off_t.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/arithmetic.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/ctype.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/debug.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/debug.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/inttypes.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/limits.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/packed.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/random.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/random.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/round.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdarg.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdbool.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stddef.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdint.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdio.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdio.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdlib.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/stdlib.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/string.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/string.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/syscall-nr.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/ustar.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/lib/ustar.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/arc4.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/arc4.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/cksum.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/cksum.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/lib.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/lib.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/main.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/tests/main.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/flags.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/init.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/init.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/interrupt.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/interrupt.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/intr-stubs.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/io.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/loader.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/malloc.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/malloc.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/palloc.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/palloc.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/pte.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/switch.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/synch.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/synch.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/thread.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/thread.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/threads/vaddr.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/exception.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/exception.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/gdt.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/gdt.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/pagedir.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/pagedir.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/process.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/process.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/syscall.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/syscall.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/tss.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/userprog/tss.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/utils/setitimer-helper.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/utils/squish-pty.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/utils/squish-unix.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="G:/pintos_user/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

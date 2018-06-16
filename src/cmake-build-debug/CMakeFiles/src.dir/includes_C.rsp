@@ -1,0 +1,1 @@
+-IG:/pintos_user/src/lib -IG:/pintos_user/src/lib/kernel -IG:/pintos_user/src/lib/user -IG:/pintos_user/src/userprog 
