@@ -1,6 +1,7 @@
 #ifndef USERPROG_SYSCALL_H
 #define USERPROG_SYSCALL_H
 #include <stdio.h>
+#include <user/syscall.h>
 #include "../filesys/off_t.h"
 
 void syscall_init (void);
@@ -16,4 +17,5 @@ void syscall_close (int fd);
 int syscall_read (int fd, void *buffer, unsigned length);
 unsigned syscall_tell (int fd);
 int syscall_open(const char *file);
+pid_t syscall_exec(const char *cmd_line);
 #endif /* userprog/syscall.h */

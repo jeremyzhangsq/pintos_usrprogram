@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <syscall-nr.h>
 #include <user/syscall.h>
+#include <string.h>
 #include "../threads/thread.h"
 #include "../threads/interrupt.h"
 #include "../threads/vaddr.h"
@@ -10,13 +11,20 @@
 #include "../filesys/file.h"
 #include "../filesys/off_t.h"
 #include "../devices/input.h"
+#include "../threads/synch.h"
+#include "../devices/shutdown.h"
+#include "process.h"
 
 static void syscall_handler (struct intr_frame *);
 static int cnt = 0;
+// add lock for filesystem
+static struct lock filesys_lock;
 void
 syscall_init (void) 
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
+  //  init lock for file system
+  lock_init(&filesys_lock);
 }
 
 
@@ -35,6 +43,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     case SYS_WRITE:{
       verify(esp+1);
       verify(esp+2);
+      verify(*(esp+2));
       verify(esp+3);
       f->eax = syscall_write(*(esp+1),*(esp+2),*(esp+3));
       break;
@@ -74,6 +83,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     case SYS_FILESIZE:{
       verify(esp+1);  // pass sc-bad-arg
       f->eax = syscall_filesize(*(esp+1));
+//      printf("------%d-------\n",f->eax);
       break;
     }
     case SYS_TELL:{
@@ -86,8 +96,45 @@ syscall_handler (struct intr_frame *f UNUSED)
       syscall_close(*(esp+1));
       break;
     }
+    case SYS_HALT:{
+      shutdown_power_off();
+    }
+    case SYS_EXEC:{
+      verify(esp+1);  // pass sc-bad-arg
+      verify(*(esp+1));
+      f->eax = syscall_exec(*(esp+1));
+      break;
+    }
   }
 }
+pid_t
+syscall_exec(const char *cmd_line){
+//  use file open check if father process is finished
+  int size = 0;
+  while(cmd_line[size]!='\0')
+    size++;
+//  printf("cmd:%s\n",cmd_line);
+  char* name;
+  char* ptr;
+  name = strtok_r(cmd_line," ",&ptr);
+//  printf("%s-------\n",name);
+  struct file* f = filesys_open(name);
+  lock_acquire(&filesys_lock);
+  if(f){
+    file_close(f);
+    lock_release(&filesys_lock);
+    int id = process_execute(cmd_line);
+    printf("%d\n",id);
+    return id;
+  }
+  else{
+    lock_release(&filesys_lock);
+//    printf("close\n");
+    return -1;
+  }
+
+}
+
 
 void
 verify(void *esp){
@@ -107,7 +154,9 @@ fd_to_file (int fd)
 int
 syscall_open(const char *file){
   int fd = -1;
+  lock_acquire(&filesys_lock);
   struct file* f= filesys_open (file);
+  lock_release(&filesys_lock);
   if(f){
     fd = thread_current()->fd;
     thread_current()->fdpairs[fd] = f;
@@ -118,50 +167,78 @@ syscall_open(const char *file){
 
 int
 syscall_write(int fd, const void *buffer, unsigned size){
-  switch (fd){
-    case 1:{
+  if (fd == 1){
+      lock_acquire(&filesys_lock);
       putbuf(buffer,size);
+      lock_release(&filesys_lock);
       return size;
-    }
+  }
+  else{
+    struct file * f = fd_to_file(fd);
+    if (f){
+      lock_acquire(&filesys_lock);
+      int res = file_write(f,buffer,size);
+      lock_release(&filesys_lock);
+      return res;
+    } else return -1;
   }
 }
 int
 syscall_read (int fd, void *buffer, unsigned length){
+//  printf("%d %d\n",fd,length);
     if(fd == 0){
-      int8_t *buffer = buffer;
+      uint8_t *buffer = (uint8_t *) buffer;
       for(int i = 0;i<length;i++){
         buffer[i] = input_getc();
       }
+      return length;
     }
-    else{
-      struct file * f = fd_to_file(fd);
-      if(f) return file_read(f,buffer,length);
-      else syscall_exit(-1);
+    struct file * f = fd_to_file(fd);
+    if(f) {
+        lock_acquire(&filesys_lock);
+        int resu = file_read(f,buffer,length);
+        lock_release(&filesys_lock);
+        return resu;
     }
+    else return 0;
 }
 bool
 syscall_create (const char *file, unsigned initial_size){
-    return filesys_create(file,initial_size);
+    lock_acquire(&filesys_lock);
+    bool res =  filesys_create(file,initial_size);
+    lock_release(&filesys_lock);
+    return res;
 }
 
 bool
 syscall_remove (const char *file){
-  return filesys_remove(file);
+  lock_acquire(&filesys_lock);
+  bool res = filesys_remove(file);
+  lock_release(&filesys_lock);
 }
 
 void
 syscall_seek (int fd, unsigned position){
   struct file * f = fd_to_file(fd);
-  if (f)
+  if (f){
+    lock_acquire(&filesys_lock);
     file_seek (f, position);
+    lock_release(&filesys_lock);
+  }
+
   else
     syscall_exit(-1);
 }
 off_t
 syscall_filesize (int fd){
   struct file * f = fd_to_file(fd);
-  if (f)
-    return file_length (f);
+  if (f){
+    lock_acquire(&filesys_lock);
+    off_t res = file_length (f);
+    lock_release(&filesys_lock);
+    return res;
+  }
+
   else
     syscall_exit(-1);
 }
@@ -170,7 +247,9 @@ syscall_close(int fd){
   struct file* f = fd_to_file(fd);
   if(f){
     thread_current()->fd--;
+    lock_acquire(&filesys_lock);
     file_close(f);
+    lock_release(&filesys_lock);
   }
 
 
@@ -179,7 +258,10 @@ syscall_close(int fd){
 unsigned
 syscall_tell (int fd){
   struct file * f = fd_to_file(fd);
-  return file_tell (f);
+  lock_acquire(&filesys_lock);
+  off_t res = file_tell (f);
+  lock_release(&filesys_lock);
+  return res;
 }
 
 void
