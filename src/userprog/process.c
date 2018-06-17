@@ -233,13 +233,10 @@ load (const char *file_name, void (**eip) (void), void **esp)
     goto done;
   process_activate ();
 
-  char* token;
-  char* save_ptr;
 //  parse args and store into array
-  char* argv[MAX_ARGC];
-  char* ptrs[MAX_ARGC];
+  char* token,save_ptr;
+  char* argv[MAX_ARGC],ptrs[MAX_ARGC];
   int argc =0;
-
   for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr)){
     argv[argc] = token;
     ptrs[argc] = save_ptr;
@@ -334,20 +331,15 @@ load (const char *file_name, void (**eip) (void), void **esp)
   int offset = 0;
 //  printf("base:%p\n",PHYS_BASE);
   for(int cnt = argc-1;cnt>=0;cnt--){
-//      printf("esp:%p\n",*esp);
     offset += charsize(argv[cnt]);
-//      printf("argv:%s\n",argv[cnt]);
     *esp -= charsize(argv[cnt]);
     ptrs[cnt] = *esp;
-//      printf("cnt:%d arv:%s addr; %p\n",cnt,argv[cnt],ptrs[cnt]);
     memcpy(*esp, argv[cnt], charsize(argv[cnt]));
   }
 //printf("esp:%p\n\n",*esp);
 //  stp2: push word align
-//    printf("mod:%d\n",(4-offset%4));
-  *esp -= (4 - offset%4);
-//    printf("esp:%p\n",*esp);
 
+  *esp -= (4 - offset%4);
   memset(*esp, 0, 4 - offset%4);
 //  stp3: push argv addr to stack
   *esp -= sizeof(char*);
@@ -355,25 +347,17 @@ load (const char *file_name, void (**eip) (void), void **esp)
 //    printf("esp:%p\n",*esp);
   for(int cnt = argc-1; cnt>=0;cnt--){
     *esp -= sizeof(ptrs[cnt]);
-//      printf("esp:%p\n",*esp);
     memcpy(*esp, &ptrs[cnt], sizeof(char*));
   }
 // stp4: push argv[] and argc and return address
-    void *temp = *esp;
-//    printf("%p\n",*esp);
-
+  void *temp = *esp;
   *esp -= sizeof(char**);
-//    printf("esp:%p\n",*esp);
-//    printf("%p\n",temp);
   memcpy(*esp, &temp, sizeof(char**));
   *esp -= 4;
-//    int tmp = argc;
-//    printf("esp:%p\n",*esp);
   memcpy(*esp, &argc, 4);
   *esp -= sizeof(void*);
   memset(*esp, NULL, sizeof(void *));
-//    printf("esp:%p\n",*esp);
-//    hex_dump(*esp, *esp, PHYS_BASE - (*esp), true);
+;
 /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
 
