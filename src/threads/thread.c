@@ -11,6 +11,8 @@
 #include "threads/switch.h"
 #include "threads/synch.h"
 #include "threads/vaddr.h"
+#include "thread.h"
+
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
@@ -125,9 +127,9 @@ thread_tick (void)
   struct thread *t = thread_current ();
 
     // don't change the following 3 lines  *********   !!!
-    int len = strlen (t-> name);
-    if (t->name[len - 1] >= '0' && t->name[len - 1] <= '9')
-        printf ("(%c%c,%d) ", t->name[len - 2], t->name[len - 1], t->priority);
+//    int len = strlen (t-> name);
+//    if (t->name[len - 1] >= '0' && t->name[len - 1] <= '9')
+//        printf ("(%c%c,%d) ", t->name[len - 2], t->name[len - 1], t->priority);
     //things to help us testing your program  ***   !!!
     
   /* Update statistics. */
@@ -469,6 +471,8 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->magic = THREAD_MAGIC;
+  t->fd = 2;
+
 
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);

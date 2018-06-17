@@ -2,13 +2,16 @@
 #include <stdio.h>
 #include <syscall-nr.h>
 #include <user/syscall.h>
-#include "threads/interrupt.h"
-#include "threads/thread.h"
 #include "../threads/thread.h"
 #include "../threads/interrupt.h"
+#include "../threads/vaddr.h"
+#include "pagedir.h"
+#include "../filesys/filesys.h"
+#include "../filesys/file.h"
+#include "../filesys/off_t.h"
 
 static void syscall_handler (struct intr_frame *);
-
+static int cnt = 0;
 void
 syscall_init (void) 
 {
@@ -18,22 +21,80 @@ syscall_init (void)
 static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
-//    printf("syscall!\n");
   int *esp = f->esp;
+  verify(esp);
   switch(*esp){
+    case SYS_OPEN:{
+      verify(*(esp+1));// pass open-null and open-bad-ptr
+      f->eax = syscall_open(*(esp+1));
+      break;
+    }
     case SYS_WRITE:{
-      write(*(esp+1),*(esp+2),*(esp+3));
+      verify(esp+1);
+      verify(esp+2);
+      verify(esp+3);
+      f->eax = syscall_write(*(esp+1),*(esp+2),*(esp+3));
       break;
     }
     case SYS_EXIT:{
-      exit(*(esp+1));
-        break;
+      syscall_exit(*(esp+1));
+      break;
+    }
+    case SYS_CREATE:{
+      verify(*(esp+1));// pass create-null and create-bad-ptr
+      f->eax = syscall_create(*(esp+1),*(esp+2));
+      break;
+    }
+    case SYS_REMOVE:{
+      verify(*(esp+1));
+      f->eax = syscall_remove (*(esp+1));
+      break;
+    }
+    case SYS_SEEK:{
+      syscall_seek(*(esp+1),*(esp+2));
+      break;
+    }
+    case SYS_FILESIZE:{
+      f->eax = syscall_filesize(*(esp+1));
+      break;
+    }
+    case SYS_TELL:{
+      f->eax = syscall_tell(*(esp+1));
+      break;
+    }
+    case SYS_CLOSE:{
+      verify(*(esp+1));
+      syscall_close(*(esp+1));
+      break;
     }
   }
-
 }
+
+void
+verify(void *esp){
+//  if(esp == NULL) syscall_exit(-1);
+  if(is_kernel_vaddr(esp)) syscall_exit(-1);
+  if(pagedir_get_page(thread_current()->pagedir,esp) == NULL) syscall_exit(-1);
+}
+
+struct file* fd_to_file (int fd)
+{ if(fd>=thread_current()->fd || fd < 0)
+    syscall_exit(-1);
+  return thread_current()->fdpairs[fd];
+}
+int syscall_open(const char *file){
+  int fd = -1;
+  struct file* f= filesys_open (file);
+  if(f){
+    fd = thread_current()->fd;
+    thread_current()->fdpairs[fd] = f;
+    thread_current()->fd++;
+  }
+  return fd;
+}
+
 int
-write(int fd, const void *buffer, unsigned size){
+syscall_write(int fd, const void *buffer, unsigned size){
   switch (fd){
     case 1:{
       putbuf(buffer,size);
@@ -41,9 +102,51 @@ write(int fd, const void *buffer, unsigned size){
     }
   }
 }
+bool
+syscall_create (const char *file, unsigned initial_size){
+  struct file *f = filesys_open(file);
+  if(f){
+    return false;
+    printf("------none--------\n");
+  }
+
+  else{
+    return filesys_create(file,initial_size);
+  }
+}
+bool
+syscall_remove (const char *file){
+  return filesys_remove(file);
+}
+void
+syscall_seek (int fd, unsigned position){
+  struct file * f = fd_to_file(fd);
+  if (f)
+    file_seek (f, position);
+  else
+    syscall_exit(-1);
+}
+off_t
+syscall_filesize (int fd){
+  struct file * f = fd_to_file(fd);
+  if (f)
+    return file_length (f);
+  else
+    syscall_exit(-1);
+}
+void
+syscall_close(struct file *file){
+  file_close (file);
+}
+
+unsigned
+syscall_tell (int fd){
+  struct file * f = fd_to_file(fd);
+  return file_tell (f);
+}
 
 void
-exit(int status){
+syscall_exit(int status){
   printf("%s: exit(%d)\n",thread_current()->name,status);
   thread_exit();
 }
