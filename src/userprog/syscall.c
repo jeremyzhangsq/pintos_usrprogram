@@ -9,6 +9,7 @@
 #include "../filesys/filesys.h"
 #include "../filesys/file.h"
 #include "../filesys/off_t.h"
+#include "../devices/input.h"
 
 static void syscall_handler (struct intr_frame *);
 static int cnt = 0;
@@ -17,6 +18,7 @@ syscall_init (void)
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
 }
+
 
 static void
 syscall_handler (struct intr_frame *f UNUSED) 
@@ -35,6 +37,14 @@ syscall_handler (struct intr_frame *f UNUSED)
       verify(esp+2);
       verify(esp+3);
       f->eax = syscall_write(*(esp+1),*(esp+2),*(esp+3));
+      break;
+    }
+    case SYS_READ:{
+      verify(esp+1);
+      verify(esp+2);
+      verify(*(esp+2));
+      verify(esp+3);
+      f->eax = syscall_read(*(esp+1),*(esp+2),*(esp+3));
       break;
     }
     case SYS_EXIT:{
@@ -86,14 +96,16 @@ verify(void *esp){
   if(pagedir_get_page(thread_current()->pagedir,esp) == NULL) syscall_exit(-1);
 }
 
-struct file* fd_to_file (int fd)
+struct file*
+fd_to_file (int fd)
 {
 //  printf("-----fd-%d--max %d------\n",fd,thread_current()->fd);
   if(fd>=thread_current()->fd || fd < 0)
     syscall_exit(-1);
   return thread_current()->fdpairs[fd];
 }
-int syscall_open(const char *file){
+int
+syscall_open(const char *file){
   int fd = -1;
   struct file* f= filesys_open (file);
   if(f){
@@ -113,14 +125,30 @@ syscall_write(int fd, const void *buffer, unsigned size){
     }
   }
 }
+int
+syscall_read (int fd, void *buffer, unsigned length){
+    if(fd == 0){
+      int8_t *buffer = buffer;
+      for(int i = 0;i<length;i++){
+        buffer[i] = input_getc();
+      }
+    }
+    else{
+      struct file * f = fd_to_file(fd);
+      if(f) return file_read(f,buffer,length);
+      else syscall_exit(-1);
+    }
+}
 bool
 syscall_create (const char *file, unsigned initial_size){
     return filesys_create(file,initial_size);
 }
+
 bool
 syscall_remove (const char *file){
   return filesys_remove(file);
 }
+
 void
 syscall_seek (int fd, unsigned position){
   struct file * f = fd_to_file(fd);
