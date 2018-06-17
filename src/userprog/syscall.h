@@ -12,7 +12,7 @@ bool syscall_remove (const char *file);
 void syscall_seek (int fd, unsigned position);
 struct file* fd_to_file(int fd);
 off_t syscall_filesize (int fd);
-void syscall_close (struct file *file);
+void syscall_close (int fd);
 unsigned syscall_tell (int fd);
 int syscall_open(const char *file);
 #endif /* userprog/syscall.h */

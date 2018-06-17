@@ -8,6 +8,7 @@
 #include "filesys/directory.h"
 #include "directory.h"
 #include "off_t.h"
+#include "file.h"
 
 /* Partition that contains the file system. */
 struct block *fs_device;

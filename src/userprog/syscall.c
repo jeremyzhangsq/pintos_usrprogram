@@ -25,6 +25,7 @@ syscall_handler (struct intr_frame *f UNUSED)
   verify(esp);
   switch(*esp){
     case SYS_OPEN:{
+      verify(esp+1);  // pass sc-bad-arg
       verify(*(esp+1));// pass open-null and open-bad-ptr
       f->eax = syscall_open(*(esp+1));
       break;
@@ -37,33 +38,41 @@ syscall_handler (struct intr_frame *f UNUSED)
       break;
     }
     case SYS_EXIT:{
+      verify(esp+1);  // pass sc-bad-arg
       syscall_exit(*(esp+1));
       break;
     }
     case SYS_CREATE:{
+      verify(esp+1);  // pass sc-bad-arg
+      verify(esp+2);  // pass sc-bad-arg
       verify(*(esp+1));// pass create-null and create-bad-ptr
       f->eax = syscall_create(*(esp+1),*(esp+2));
       break;
     }
     case SYS_REMOVE:{
+      verify(esp+1);  // pass sc-bad-arg
       verify(*(esp+1));
       f->eax = syscall_remove (*(esp+1));
       break;
     }
     case SYS_SEEK:{
+      verify(esp+1);  // pass sc-bad-arg
+      verify(esp+2);  // pass sc-bad-arg
       syscall_seek(*(esp+1),*(esp+2));
       break;
     }
     case SYS_FILESIZE:{
+      verify(esp+1);  // pass sc-bad-arg
       f->eax = syscall_filesize(*(esp+1));
       break;
     }
     case SYS_TELL:{
+      verify(esp+1);  // pass sc-bad-arg
       f->eax = syscall_tell(*(esp+1));
       break;
     }
     case SYS_CLOSE:{
-      verify(*(esp+1));
+      verify(esp+1);  // pass sc-bad-arg
       syscall_close(*(esp+1));
       break;
     }
@@ -78,7 +87,9 @@ verify(void *esp){
 }
 
 struct file* fd_to_file (int fd)
-{ if(fd>=thread_current()->fd || fd < 0)
+{
+//  printf("-----fd-%d--max %d------\n",fd,thread_current()->fd);
+  if(fd>=thread_current()->fd || fd < 0)
     syscall_exit(-1);
   return thread_current()->fdpairs[fd];
 }
@@ -104,15 +115,7 @@ syscall_write(int fd, const void *buffer, unsigned size){
 }
 bool
 syscall_create (const char *file, unsigned initial_size){
-  struct file *f = filesys_open(file);
-  if(f){
-    return false;
-    printf("------none--------\n");
-  }
-
-  else{
     return filesys_create(file,initial_size);
-  }
 }
 bool
 syscall_remove (const char *file){
@@ -135,8 +138,14 @@ syscall_filesize (int fd){
     syscall_exit(-1);
 }
 void
-syscall_close(struct file *file){
-  file_close (file);
+syscall_close(int fd){
+  struct file* f = fd_to_file(fd);
+  if(f){
+    thread_current()->fd--;
+    file_close(f);
+  }
+
+
 }
 
 unsigned
