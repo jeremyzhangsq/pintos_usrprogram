@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 project(src)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
-
 include_directories("lib"
                     "lib/kernel"
                     "lib/user"
