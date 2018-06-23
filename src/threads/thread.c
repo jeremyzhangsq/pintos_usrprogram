@@ -15,6 +15,7 @@
 #include "synch.h"
 #include "interrupt.h"
 #include "vaddr.h"
+#include "palloc.h"
 
 #ifdef USERPROG
 #include "userprog/process.h"
@@ -194,6 +195,11 @@ thread_create (const char *name, int priority,
   /* Initialize thread. */
   init_thread (t, name, priority);
   tid = t->tid = allocate_tid ();
+
+//  for wait syscall
+  if(strcmp(name,"idle")!=0){
+    list_push_back(&thread_current()->children,&t->childelem);
+  }
 
   /* Stack frame for kernel_thread(). */
   kf = alloc_frame (t, sizeof *kf);
@@ -475,6 +481,9 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->magic = THREAD_MAGIC;
+//  for wait syscall
+  list_init(&t->children);
+  sema_init(&t->childlock,0);
 #ifdef USERPROG
   t->fd = 2;
 #endif

@@ -23,6 +23,10 @@
 #include "../threads/vaddr.h"
 #include "../threads/loader.h"
 #include "../devices/timer.h"
+#include "../threads/synch.h"
+#include "../threads/palloc.h"
+#include "../threads/flags.h"
+#include "gdt.h"
 
 #define MAX_ARGC 100
 static thread_func start_process NO_RETURN;
@@ -52,6 +56,9 @@ process_execute (const char *file_name)
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
+
+//  printf("acquire-------------\n");
+
   return tid;
 }
 
@@ -69,12 +76,19 @@ start_process (void *file_name_)
   if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
   if_.cs = SEL_UCSEG;
   if_.eflags = FLAG_IF | FLAG_MBS;
+
+  //    for wait syscall
   success = load (file_name, &if_.eip, &if_.esp);
 
   /* If load failed, quit. */
   palloc_free_page (file_name);
-  if (!success)
-    thread_exit ();
+  if (!success){
+//      for wait syscall
+      thread_current()->return_code = -1;
+      sema_up(&thread_current()->childlock);
+//      printf("error release-------------\n");
+      thread_exit ();
+  }
 
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
@@ -98,8 +112,25 @@ start_process (void *file_name_)
 int
 process_wait (tid_t child_tid UNUSED)
 {
-  timer_msleep(1000);
-  return -1;
+//    timer_msleep(1000);
+//    for wait syscall
+    int pid = -1;
+    struct list_elem *e;
+    for (e = list_begin (&thread_current()->children); e != list_end (&thread_current()->children);
+         e = list_next (e))
+    {
+        struct thread *cthread = list_entry(e, struct thread, childelem);
+        if(cthread->tid == child_tid){
+//            printf("child name:%s\n",cthread->name);
+//            printf("wait down: %d\n",cthread->childlock.value);
+            sema_down(&cthread->childlock);
+//            printf("wait after down: %d\n",cthread->childlock.value);
+            pid = cthread->return_code == -1 ? -1 : child_tid;
+            sema_up(&cthread->childlock);
+            return pid;
+        };
+    }
+    return pid;
 }
 
 /* Free the current process's resources. */
@@ -121,10 +152,18 @@ process_exit (void)
          directory before destroying the process's page
          directory, or our active page directory will be one
          that's been freed (and cleared). */
+
+      cur->return_code = 0;
+//    printf("before up:%d\n",thread_current()->childlock.value);
+      sema_up(&cur->childlock);
+//    printf("after up:%d\n",thread_current()->childlock.value);
       cur->pagedir = NULL;
       pagedir_activate (NULL);
       pagedir_destroy (pd);
+        //    for wait syscall
+
     }
+
 }
 
 /* Sets up the CPU for running user code in the current
