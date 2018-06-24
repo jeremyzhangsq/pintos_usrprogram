@@ -198,6 +198,8 @@ thread_create (const char *name, int priority,
 
 //  for wait syscall
   if(strcmp(name,"idle")!=0){
+    sema_init(&t->childlock,0);
+//    printf("%s create %s\ttid:%d\tsemo:%d\n",thread_current()->name,name,tid,t->childlock.value);
     list_push_back(&thread_current()->children,&t->childelem);
   }
 
@@ -483,7 +485,6 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
 //  for wait syscall
   list_init(&t->children);
-  sema_init(&t->childlock,0);
 #ifdef USERPROG
   t->fd = 2;
 #endif

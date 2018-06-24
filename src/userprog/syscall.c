@@ -100,13 +100,12 @@ syscall_handler (struct intr_frame *f UNUSED)
       shutdown_power_off();
     }
     case SYS_WAIT:{
-//      verify(esp+1);  // pass sc-bad-arg
-//      verify(*(esp+1));
-//      f->eax = process_wait(*(esp+1));
+      f->eax = process_wait(*(esp+1));
       break;
     }
     case SYS_EXEC:{
-      verify(esp+1);  // pass sc-bad-arg
+//      verify(esp+1);  // pass sc-bad-arg
+//      printf("-----------exec:%s-----------------------\n",*(esp+1));
       verify(*(esp+1));
       f->eax = syscall_exec(*(esp+1));
       break;
@@ -117,8 +116,10 @@ pid_t
 syscall_exec(const char *cmd_line){
 //  use file open check if father process is finished
 //  printf("cmd line:%s\n",cmd_line);
+//  printf("before execu\n");
   int id = process_execute(cmd_line);
-  return process_wait(id);
+//  printf("after execu:%d\n",id);
+  return id;
 
 }
 
@@ -254,5 +255,6 @@ syscall_tell (int fd){
 void
 syscall_exit(int status){
   printf("%s: exit(%d)\n",thread_current()->name,status);
+  thread_current()->return_code = status;
   thread_exit();
 }

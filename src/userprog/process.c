@@ -57,7 +57,7 @@ process_execute (const char *file_name)
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
-
+//  printf("%s create sucess: %d\n",file_name,tid);
   return tid;
 }
 
@@ -86,7 +86,6 @@ start_process (void *file_name_)
 
       thread_current()->return_code = -1;
       sema_up(&thread_current()->childlock);
-//      printf("error release-------------\n");
       thread_exit ();
   }
   /* Start the user process by simulating a return from an
@@ -111,26 +110,34 @@ start_process (void *file_name_)
 int
 process_wait (tid_t child_tid UNUSED)
 {
-//    timer_msleep(1000);
 //    for wait syscall
     int pid = -1;
+//    printf("begin waiting...\n");
+//    printf("father name:%s\n",thread_current()->name);
     struct list_elem *e;
+    if(list_empty(&thread_current()->children)){
+//        printf("%s child list empty\n",thread_current()->name);
+        return pid;
+    }
     for (e = list_begin (&thread_current()->children); e != list_end (&thread_current()->children);
          e = list_next (e))
     {
         struct thread *cthread = list_entry(e, struct thread, childelem);
+//        if(strcmp(thread_current()->name,"wait-simple")==0){
+//            printf("child is %s\n",cthread->name);
+//        }
         if(cthread->tid == child_tid){
-//            printf("child name:%s\n",cthread->name);
-//            printf("wait down: %d\n",cthread->childlock.value);
+//            printf("%s wait for semo from %s\n",thread_current()->name,cthread->name);
             sema_down(&cthread->childlock);
-//            printf("wait after down: %d\n",cthread->childlock.value);
-            pid = cthread->return_code == -1 ? -1 : child_tid;
+//            printf("%s get semo from %s\n",thread_current()->name,cthread->name);
+//            printf("%s\tid:%d\n",cthread->name,cthread->return_code);
+            pid = cthread->return_code == -1 ? -1 : cthread->return_code;
             sema_up(&cthread->childlock);
-//            printf("return id:%d\n",pid);
+//            printf("finish waiting %s...\n",cthread->name);
             return pid;
         }
     }
-//    printf("return id:%d\n",pid);
+
     return pid;
 }
 
@@ -154,9 +161,11 @@ process_exit (void)
          directory, or our active page directory will be one
          that's been freed (and cleared). */
 
-      cur->return_code = 0;
+//        printf("before %s finish:%d\n",cur->name,cur->childlock.value);
 //    printf("before up:%d\n",thread_current()->childlock.value);
       sema_up(&cur->childlock);
+
+//      printf("%s finished:%d\n",cur->name,cur->childlock.value);
 //    printf("after up:%d\n",thread_current()->childlock.value);
       cur->pagedir = NULL;
       pagedir_activate (NULL);
