@@ -115,7 +115,6 @@ syscall_handler (struct intr_frame *f UNUSED)
 pid_t
 syscall_exec(const char *cmd_line){
 //  use file open check if father process is finished
-//  printf("cmd line:%s\n",cmd_line);
 //  printf("before execu\n");
   int id = process_execute(cmd_line);
   return id;

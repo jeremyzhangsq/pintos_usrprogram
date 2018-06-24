@@ -41,23 +41,30 @@ tid_t
 process_execute (const char *file_name)
 {
   char *fn_copy;
+  char *fn_copy2;
   tid_t tid;
-
+//  printf("cmd line:%s\n",file_name);
   /* Make a copy of FILE_NAME.
      Otherwise there's a race between the caller and load(). */
   fn_copy = palloc_get_page (0);
-
+  fn_copy2 = palloc_get_page (0);
   if (fn_copy == NULL){
       return TID_ERROR;
   }
+
   strlcpy (fn_copy, file_name, PGSIZE);
+  strlcpy (fn_copy2, file_name, PGSIZE);
   char *save_ptr;
-  strtok_r (file_name, " ", &save_ptr);
+//  printf("file name:%s\n",file_name);
+  strtok_r (fn_copy2, " ", &save_ptr);
+
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
-  if (tid == TID_ERROR)
-    palloc_free_page (fn_copy);
-//    printf("%s create sucess: %d\n",file_name,tid);
+  tid = thread_create (fn_copy2, PRI_DEFAULT, start_process, fn_copy);
+  if (tid == TID_ERROR){
+      palloc_free_page (fn_copy);
+  }
+
+//    printf("%s create sucess: %d\n",file_name,tid)
     struct thread* cthread = get_child_by_id(tid);
     if(cthread){
         if(!cthread->load){
