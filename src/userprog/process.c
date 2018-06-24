@@ -27,6 +27,7 @@
 #include "../threads/palloc.h"
 #include "../threads/flags.h"
 #include "gdt.h"
+#include "pagedir.h"
 
 #define MAX_ARGC 100
 static thread_func start_process NO_RETURN;
@@ -45,19 +46,17 @@ process_execute (const char *file_name)
   /* Make a copy of FILE_NAME.
      Otherwise there's a race between the caller and load(). */
   fn_copy = palloc_get_page (0);
-  if (fn_copy == NULL)
-    return TID_ERROR;
+
+  if (fn_copy == NULL){
+      return TID_ERROR;
+  }
   strlcpy (fn_copy, file_name, PGSIZE);
   char *save_ptr;
-//  todo:remove print
-//  printf("---------test print in process_execute--------------------\n");
   strtok_r (file_name, " ", &save_ptr);
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
-
-//  printf("acquire-------------\n");
 
   return tid;
 }
@@ -84,12 +83,12 @@ start_process (void *file_name_)
   palloc_free_page (file_name);
   if (!success){
 //      for wait syscall
+
       thread_current()->return_code = -1;
       sema_up(&thread_current()->childlock);
 //      printf("error release-------------\n");
       thread_exit ();
   }
-
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
      threads/intr-stubs.S).  Because intr_exit takes all of its
@@ -127,9 +126,11 @@ process_wait (tid_t child_tid UNUSED)
 //            printf("wait after down: %d\n",cthread->childlock.value);
             pid = cthread->return_code == -1 ? -1 : child_tid;
             sema_up(&cthread->childlock);
+//            printf("return id:%d\n",pid);
             return pid;
-        };
+        }
     }
+//    printf("return id:%d\n",pid);
     return pid;
 }
 
@@ -278,7 +279,7 @@ load (const char *file_name, void (**eip) (void), void **esp)
   char* argv[MAX_ARGC];
   char* ptrs[MAX_ARGC];
   int argc =0;
-
+//    printf("input:%s\n",file_name);
   for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr)){
     argv[argc] = token;
     ptrs[argc] = save_ptr;
@@ -290,7 +291,9 @@ load (const char *file_name, void (**eip) (void), void **esp)
     {
       printf ("load: %s: open failed\n", file_name);
       goto done;
-    }
+    } else{
+      file_deny_write(file);
+  }
   /* Read and verify executable header. */
   if (file_read (file, &ehdr, sizeof ehdr) != sizeof ehdr
       || memcmp (ehdr.e_ident, "\177ELF\1\1\1", 7)
@@ -371,7 +374,6 @@ load (const char *file_name, void (**eip) (void), void **esp)
 // stp1: push argv to stack
 
   int offset = 0;
-//  printf("base:%p\n",PHYS_BASE);
   for(int cnt = argc-1;cnt>=0;cnt--){
 //      printf("esp:%p\n",*esp);
     offset += charsize(argv[cnt]);

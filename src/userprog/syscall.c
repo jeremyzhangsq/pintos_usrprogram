@@ -99,6 +99,12 @@ syscall_handler (struct intr_frame *f UNUSED)
     case SYS_HALT:{
       shutdown_power_off();
     }
+    case SYS_WAIT:{
+//      verify(esp+1);  // pass sc-bad-arg
+//      verify(*(esp+1));
+//      f->eax = process_wait(*(esp+1));
+      break;
+    }
     case SYS_EXEC:{
       verify(esp+1);  // pass sc-bad-arg
       verify(*(esp+1));
@@ -110,28 +116,9 @@ syscall_handler (struct intr_frame *f UNUSED)
 pid_t
 syscall_exec(const char *cmd_line){
 //  use file open check if father process is finished
-  int size = 0;
-  while(cmd_line[size]!='\0')
-    size++;
-//  printf("cmd:%s\n",cmd_line);
-  char* name;
-  char* ptr;
-  name = strtok_r(cmd_line," ",&ptr);
-//  printf("%s-------\n",name);
-  struct file* f = filesys_open(name);
-  lock_acquire(&filesys_lock);
-  if(f){
-    file_close(f);
-    lock_release(&filesys_lock);
-    int id = process_execute(cmd_line);
-    printf("%d\n",id);
-    return id;
-  }
-  else{
-    lock_release(&filesys_lock);
-//    printf("close\n");
-    return -1;
-  }
+//  printf("cmd line:%s\n",cmd_line);
+  int id = process_execute(cmd_line);
+  return process_wait(id);
 
 }
 
