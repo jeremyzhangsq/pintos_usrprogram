@@ -199,6 +199,8 @@ thread_create (const char *name, int priority,
 //  for wait syscall
   if(strcmp(name,"idle")!=0){
     sema_init(&t->childlock,0);
+    sema_init(&t->loadlock,0);
+    t->load = false;
 //    printf("%s create %s\ttid:%d\tsemo:%d\n",thread_current()->name,name,tid,t->childlock.value);
     list_push_back(&thread_current()->children,&t->childelem);
   }
@@ -217,7 +219,6 @@ thread_create (const char *name, int priority,
   sf = alloc_frame (t, sizeof *sf);
   sf->eip = switch_entry;
   sf->ebp = 0;
-
   /* Add to run queue. */
   thread_unblock (t);
 
@@ -239,7 +240,19 @@ thread_block (void)
   thread_current ()->status = THREAD_BLOCKED;
   schedule ();
 }
-
+struct thread* get_child_by_id(int id){
+  struct list_elem *e;
+  for (e = list_begin (&thread_current()->children); e != list_end (&thread_current()->children);
+       e = list_next (e))
+  {
+    struct thread *cthread = list_entry(e, struct thread, childelem);
+//    printf("name of son: %s load: %d\n",cthread->name,cthread->load);
+    if(cthread->tid == id){
+      return cthread;
+    }
+  }
+  return NULL;
+}
 /* Transitions a blocked thread T to the ready-to-run state.
    This is an error if T is not blocked.  (Use thread_yield() to
    make the running thread ready.)
@@ -485,6 +498,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
 //  for wait syscall
   list_init(&t->children);
+
   t->exist = -1;
 #ifdef USERPROG
   t->fd = 2;

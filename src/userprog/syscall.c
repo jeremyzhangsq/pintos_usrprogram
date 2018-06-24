@@ -118,7 +118,6 @@ syscall_exec(const char *cmd_line){
 //  printf("cmd line:%s\n",cmd_line);
 //  printf("before execu\n");
   int id = process_execute(cmd_line);
-//  printf("after execu:%d\n",id);
   return id;
 
 }

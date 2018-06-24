@@ -57,7 +57,18 @@ process_execute (const char *file_name)
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
-//  printf("%s create sucess: %d\n",file_name,tid);
+//    printf("%s create sucess: %d\n",file_name,tid);
+    struct thread* cthread = get_child_by_id(tid);
+    if(cthread){
+        if(!cthread->load){
+
+            cthread->tid = -1;
+            sema_down(&cthread->loadlock);
+    //          printf("current:%s child:%s loadsema:%d load:%d id:%d\n",thread_current()->name,cthread->name,cthread->loadlock.value,cthread->load,cthread->tid);
+            return -1;
+        }
+    }
+
   return tid;
 }
 
@@ -78,16 +89,21 @@ start_process (void *file_name_)
 
   //    for wait syscall
   success = load (file_name, &if_.eip, &if_.esp);
-
   /* If load failed, quit. */
   palloc_free_page (file_name);
   if (!success){
 //      for wait syscall
-
       thread_current()->return_code = -1;
-      sema_up(&thread_current()->childlock);
+      thread_current()->load = false;
+//      printf("before up: cuurent:%s sema:%d\n",thread_current()->name,thread_current()->loadlock.value);
+      sema_up(&thread_current()->loadlock);
+//      printf("after up; cuurent:%s sema:%d\n",thread_current()->name,thread_current()->loadlock.value);
+//      printf("up: current:%s child:%s lock:%d\n",thread_current()->name,cthread->name,cthread->loadlock.value);
       thread_exit ();
   }
+    thread_current()->load = true;
+    sema_up(&thread_current()->loadlock);
+//    printf("up: current:%s child:%s lock:%d\n",thread_current()->name,cthread->name,cthread->loadlock.value);
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
      threads/intr-stubs.S).  Because intr_exit takes all of its
@@ -114,32 +130,25 @@ process_wait (tid_t child_tid UNUSED)
     int pid = -1;
 //    printf("begin waiting...\n");
 //    printf("father name:%s\n",thread_current()->name);
-    struct list_elem *e;
-    if(list_empty(&thread_current()->children)){
+    struct thread *cthread = get_child_by_id(child_tid);
+    if(list_empty(&thread_current()->children) || cthread==NULL){
 //        printf("%s child list empty\n",thread_current()->name);
         return pid;
     }
-    for (e = list_begin (&thread_current()->children); e != list_end (&thread_current()->children);
-         e = list_next (e))
-    {
-        struct thread *cthread = list_entry(e, struct thread, childelem);
-//        if(strcmp(thread_current()->name,"wait-simple")==0){
-//            printf("child is %s\n",cthread->name);
-//        }
-        if(cthread->tid == child_tid){
+//    printf("son: %s cthread_id:%d child_tid:%d\n",cthread->name,cthread->tid,child_tid);
+    if(cthread->tid == child_tid){
 //            printf("%s wait for semo from %s\n",thread_current()->name,cthread->name);
-            sema_down(&cthread->childlock);
+        sema_down(&cthread->childlock);
 //            printf("%s get semo from %s\n",thread_current()->name,cthread->name);
-//            printf("%s\tid:%d\n",cthread->name,cthread->return_code);
-            pid = cthread->return_code == -1 ? -1 : cthread->return_code;
-            if(thread_current()->exist == pid)
-                pid = -1;
-            else
-                thread_current()->exist = pid;
-            sema_up(&cthread->childlock);
+        pid = cthread->return_code;
+//        printf("pid = %d\n",pid);
+        if(thread_current()->exist == pid)
+            pid = -1;
+        else
+            thread_current()->exist = pid;
+        sema_up(&cthread->childlock);
 //            printf("finish waiting %s...\n",cthread->name);
-            return pid;
-        }
+        return pid;
     }
 
     return pid;
