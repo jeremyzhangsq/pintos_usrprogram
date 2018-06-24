@@ -26,9 +26,21 @@
       <file leaf-file-name="process.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userprog/process.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+            <state relative-caret-position="1375">
+              <caret line="78" column="1" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="78" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thread.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/thread.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="95" column="4" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="101" selection-end-column="20" />
+              <folding>
+                <element signature="e#4288#4430#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,8 +68,8 @@
       <file leaf-file-name="exception.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userprog/exception.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="95" column="61" lean-forward="true" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
+            <state relative-caret-position="1080">
+              <caret line="85" column="4" lean-forward="false" selection-start-line="85" selection-start-column="4" selection-end-line="92" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -65,16 +77,6 @@
       </file>
       <file leaf-file-name="exec-missing.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/userprog/exec-missing.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exec-missing.ck" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/userprog/exec-missing.ck">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -106,7 +108,7 @@
       <file leaf-file-name="thread.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threads/thread.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
+            <state relative-caret-position="826">
               <caret line="205" column="3" lean-forward="true" selection-start-line="205" selection-start-column="3" selection-end-line="205" selection-end-column="3" />
               <folding>
                 <element signature="e#9297#9313#0" expanded="true" />
@@ -119,8 +121,8 @@
       <file leaf-file-name="syscall.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="118" column="18" lean-forward="false" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+            <state relative-caret-position="291">
+              <caret line="176" column="32" lean-forward="true" selection-start-line="176" selection-start-column="20" selection-end-line="176" selection-end-column="32" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -181,8 +183,8 @@
         <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/threads/thread.c" />
         <option value="$PROJECT_DIR$/userprog/exception.c" />
-        <option value="$PROJECT_DIR$/userprog/syscall.c" />
         <option value="$PROJECT_DIR$/userprog/process.c" />
+        <option value="$PROJECT_DIR$/userprog/syscall.c" />
       </list>
     </option>
   </component>
@@ -223,12 +225,11 @@
             <path>
               <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="threads" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="userprog" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -286,7 +287,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115850000" />
+    <option name="totallyTimeSpent" value="118596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -632,24 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="97" column="14" lean-forward="false" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-          <folding>
-            <element signature="e#4288#4430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/syscall.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="7" column="53" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/userprog/exec-missing.ck">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -662,25 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="205" column="3" lean-forward="true" selection-start-line="205" selection-start-column="3" selection-end-line="205" selection-end-column="3" />
-          <folding>
-            <element signature="e#9297#9313#0" expanded="true" />
-            <element signature="e#16066#16126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/exception.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="95" column="61" lean-forward="true" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -709,20 +673,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/syscall.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="7" column="53" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="118" column="18" lean-forward="false" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+        <state relative-caret-position="291">
+          <caret line="176" column="32" lean-forward="true" selection-start-line="176" selection-start-column="20" selection-end-line="176" selection-end-column="32" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/exception.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="85" column="4" lean-forward="false" selection-start-line="85" selection-start-column="4" selection-end-line="92" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="826">
+          <caret line="205" column="3" lean-forward="true" selection-start-line="205" selection-start-column="3" selection-end-line="205" selection-end-column="3" />
+          <folding>
+            <element signature="e#9297#9313#0" expanded="true" />
+            <element signature="e#16066#16126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="95" column="4" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="101" selection-end-column="20" />
+          <folding>
+            <element signature="e#4288#4430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/userprog/process.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        <state relative-caret-position="1375">
+          <caret line="78" column="1" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="78" selection-end-column="1" />
           <folding />
         </state>
       </provider>

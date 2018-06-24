@@ -132,7 +132,6 @@ verify(void *esp){
 struct file*
 fd_to_file (int fd)
 {
-//  printf("-----fd-%d--max %d------\n",fd,thread_current()->fd);
   if(fd>=thread_current()->fd || fd < 0)
     syscall_exit(-1);
   return thread_current()->fdpairs[fd];
@@ -237,8 +236,6 @@ syscall_close(int fd){
     file_close(f);
     lock_release(&filesys_lock);
   }
-
-
 }
 
 unsigned
