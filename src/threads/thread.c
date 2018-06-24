@@ -485,6 +485,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
 //  for wait syscall
   list_init(&t->children);
+  t->exist = -1;
 #ifdef USERPROG
   t->fd = 2;
 #endif

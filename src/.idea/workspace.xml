@@ -23,11 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="process.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="process.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userprog/process.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="450" column="67" lean-forward="true" selection-start-line="450" selection-start-column="67" selection-end-line="450" selection-end-column="67" />
+            <state relative-caret-position="346">
+              <caret line="132" column="30" lean-forward="false" selection-start-line="132" selection-start-column="30" selection-end-line="132" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -53,18 +53,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="string.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/string.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="palloc.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threads/palloc.c">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,14 +63,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thread.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="thread.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threads/thread.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1712">
-              <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
+            <state relative-caret-position="232">
+              <caret line="488" column="15" lean-forward="true" selection-start-line="488" selection-start-column="15" selection-end-line="488" selection-end-column="15" />
               <folding>
-                <element signature="e#15588#15648#0" expanded="true" />
+                <element signature="e#15605#15665#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wait-twice.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/userprog/wait-twice.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wait-twice.ck" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/userprog/wait-twice.ck">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,8 +98,8 @@
       <file leaf-file-name="syscall.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="90" column="38" lean-forward="true" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
+            <state relative-caret-position="291">
+              <caret line="257" column="2" lean-forward="false" selection-start-line="257" selection-start-column="2" selection-end-line="257" selection-end-column="2" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -102,18 +110,8 @@
       <file leaf-file-name="thread.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threads/thread.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wait-simple.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/userprog/wait-simple.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="332">
+              <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -177,13 +175,13 @@
         <option value="$PROJECT_DIR$/filesys/filesys.c" />
         <option value="$PROJECT_DIR$/lib/user/syscall.c" />
         <option value="$PROJECT_DIR$/filesys/file.c" />
-        <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/threads/palloc.c" />
         <option value="$PROJECT_DIR$/threads/synch.c" />
         <option value="$PROJECT_DIR$/userprog/syscall.h" />
+        <option value="$PROJECT_DIR$/threads/thread.h" />
+        <option value="$PROJECT_DIR$/threads/thread.c" />
         <option value="$PROJECT_DIR$/userprog/syscall.c" />
         <option value="$PROJECT_DIR$/userprog/process.c" />
-        <option value="$PROJECT_DIR$/threads/thread.c" />
       </list>
     </option>
   </component>
@@ -220,6 +218,17 @@
             <path>
               <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="userprog" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -276,7 +285,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106514000" />
+    <option name="totallyTimeSpent" value="107686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -327,20 +336,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/threads/vaddr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="71" column="22" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/kernel/console.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/stdbool.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -511,7 +506,7 @@
         <state relative-caret-position="0">
           <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -652,18 +647,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/userprog/wait-simple.ck">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/wait-twice.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/wait-twice.ck">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -684,10 +687,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="488" column="15" lean-forward="true" selection-start-line="488" selection-start-column="15" selection-end-line="488" selection-end-column="15" />
+          <folding>
+            <element signature="e#15605#15665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="90" column="38" lean-forward="true" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
+        <state relative-caret-position="291">
+          <caret line="257" column="2" lean-forward="false" selection-start-line="257" selection-start-column="2" selection-end-line="257" selection-end-column="2" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -696,19 +717,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userprog/process.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="450" column="67" lean-forward="true" selection-start-line="450" selection-start-column="67" selection-end-line="450" selection-end-column="67" />
+        <state relative-caret-position="346">
+          <caret line="132" column="30" lean-forward="false" selection-start-line="132" selection-start-column="30" selection-end-line="132" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1712">
-          <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
-          <folding>
-            <element signature="e#15588#15648#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

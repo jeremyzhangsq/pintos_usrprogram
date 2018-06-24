@@ -94,6 +94,7 @@ struct thread
     struct list_elem elem;              /* List element. */
 //  for wait syscall
     struct semaphore  childlock;
+    int exist;
     struct list children;
     struct list_elem childelem;
     int return_code;

@@ -132,6 +132,10 @@ process_wait (tid_t child_tid UNUSED)
 //            printf("%s get semo from %s\n",thread_current()->name,cthread->name);
 //            printf("%s\tid:%d\n",cthread->name,cthread->return_code);
             pid = cthread->return_code == -1 ? -1 : cthread->return_code;
+            if(thread_current()->exist == pid)
+                pid = -1;
+            else
+                thread_current()->exist = pid;
             sema_up(&cthread->childlock);
 //            printf("finish waiting %s...\n",cthread->name);
             return pid;
