@@ -26,8 +26,18 @@
       <file leaf-file-name="process.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userprog/process.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="65" column="12" lean-forward="false" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
+            <state relative-caret-position="430">
+              <caret line="147" column="21" lean-forward="false" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="exception.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/userprog/exception.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="702">
+              <caret line="95" column="61" lean-forward="true" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -86,16 +96,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wait-twice.ck" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/userprog/wait-twice.ck">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="syscall.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SYS_</find>
       <find>tell</find>
       <find>name != NULL</find>
       <find>thread_tic</find>
@@ -162,15 +161,15 @@
       <find>get_child_by_id</find>
       <find>list_push_back</find>
       <find>name of so</find>
-      <find>printf</find>
       <find>loadlock</find>
+      <find>printf</find>
+      <find>list_remove</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tests/userprog/Make.tests" />
-        <option value="$PROJECT_DIR$/userprog/exception.c" />
         <option value="$PROJECT_DIR$/threads/init.c" />
         <option value="$PROJECT_DIR$/filesys/directory.c" />
         <option value="$PROJECT_DIR$/tests/Make.tests" />
@@ -184,6 +183,7 @@
         <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/userprog/syscall.c" />
         <option value="$PROJECT_DIR$/threads/thread.c" />
+        <option value="$PROJECT_DIR$/userprog/exception.c" />
         <option value="$PROJECT_DIR$/userprog/process.c" />
       </list>
     </option>
@@ -225,12 +225,6 @@
             <path>
               <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="userprog" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -288,7 +282,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114073000" />
+    <option name="totallyTimeSpent" value="114693000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -339,13 +333,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/userprog/create-long.ck">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/userprog/create-empty.ck">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -718,10 +705,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/exception.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="95" column="61" lean-forward="true" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/userprog/process.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="65" column="12" lean-forward="false" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
+        <state relative-caret-position="430">
+          <caret line="147" column="21" lean-forward="false" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
           <folding />
         </state>
       </provider>

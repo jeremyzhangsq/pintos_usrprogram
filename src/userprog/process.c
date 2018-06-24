@@ -61,7 +61,6 @@ process_execute (const char *file_name)
     struct thread* cthread = get_child_by_id(tid);
     if(cthread){
         if(!cthread->load){
-
             cthread->tid = -1;
             sema_down(&cthread->loadlock);
     //          printf("current:%s child:%s loadsema:%d load:%d id:%d\n",thread_current()->name,cthread->name,cthread->loadlock.value,cthread->load,cthread->tid);
@@ -146,6 +145,7 @@ process_wait (tid_t child_tid UNUSED)
             pid = -1;
         else
             thread_current()->exist = pid;
+        list_remove(&cthread->childelem);
         sema_up(&cthread->childlock);
 //            printf("finish waiting %s...\n",cthread->name);
         return pid;
